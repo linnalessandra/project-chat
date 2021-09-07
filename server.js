@@ -9,7 +9,11 @@ app.use(express.static('public'))
 
 
 io.on('connection', (socket) => {
-    console.log(socket)
+
+    socket.on("message", (incoming) => {
+        console.log(incoming)
+        io.emit('message', incoming)
+    })
 
 })
 
