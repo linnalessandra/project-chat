@@ -9,7 +9,7 @@ app.use(express.static('public'))
 
 
 io.on('connection', (socket) => {
-    console.log("new connection")
+    console.log(socket)
 
 })
 

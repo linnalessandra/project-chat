@@ -4,3 +4,7 @@ let name = ""
 window.onload = () => {
     name = prompt("Vad heter du?")
 }
+
+function sendMessage() {
+    
+}

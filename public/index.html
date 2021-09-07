@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <script src="/socket.io/socket.io.js"></script>
     <script src="./logic.js"></script>
+  
 </head>
 
 <body>
@@ -21,6 +22,12 @@
             <i class="fa fa-pencil fa-fw"></i>
         </h1>
     </header>
+
+    <ul id="messages"></ul>
+    <div class="inputContainer">
+        <input id="messages" autocomplete="off" type="text" />
+        <button onclick="sendMessage()">Send</button>
+    </div>
 
 </body>
 
