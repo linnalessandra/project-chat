@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: rgba(224, 221, 221, 0.473);
+    height: auto;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Comfortaa', cursive;
+    padding: 20px;
+    color: rgba(163, 159, 159, 0.896);
+}
+
+i {
+    height: 10px;
+}
