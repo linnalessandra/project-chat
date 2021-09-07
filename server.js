@@ -8,4 +8,10 @@ const port = 3000
 app.use(express.static('public'))
 
 
+io.on('connection', (socket) => {
+    console.log("new connection")
+
+})
+
+
 http.listen(port, () => console.log("listening on port " + port))
