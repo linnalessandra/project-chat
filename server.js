@@ -11,6 +11,10 @@ const {
     removeUser,
 } = require("./modules/users");
 
+/* const {
+    searchGif
+} = require("./modules/giphy"); */
+
 
 
 app.use(express.static('public'))
@@ -38,6 +42,11 @@ io.on('connection', (socket) => {
     socket.on('createUser', () => {
         console.log("creatUser");
         const user = addUser();
+    })
+
+    // for gif-searching
+    socket.on('gif', (gif) => {
+        io.emit('gif', gif);
     })
 
     // for disconnecting users
