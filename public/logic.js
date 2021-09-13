@@ -37,3 +37,35 @@ socket.on('userLeft', (user) => {
     list.appendChild(listItem)
     console.log("disconnect right")
 })
+let typing = false;
+
+//Check to see if someone is typing
+function timeoutTypingFunction() {
+    typing = false;
+    socket.emit("typing", { typing: typing, userName: name });
+  }
+  
+  function someoneIsTyping() {
+    if (typing === false) {
+      typing = true;
+      //Send to server that someone is typing
+      socket.emit("typing", { typing: typing, userName: name });
+      timeout = setTimeout(timeoutTypingFunction, 4000);
+    } else {
+      clearTimeout(timeout);
+      timeout = setTimeout(timeoutTypingFunction,4000);
+    }
+  }
+  
+  //Listens from server if someone is typing
+  socket.on("typing", (typing) => {
+    const typingBox = document.getElementById("typing");
+    if (typing.typing) {
+      const userTyping = document.createElement("li");
+      userTyping.style.listStyle = "none";
+      userTyping.innerText = `${typing.userName} is typing...`;
+      typingBox.append(userTyping);
+    } else {
+      typingBox.innerHTML = "";
+    }
+  });
