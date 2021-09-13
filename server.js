@@ -47,6 +47,15 @@ io.on('connection', (socket) => {
         io.emit("userLeft", user);
     })
 
+    
+
+
+
+//Listens from server if someone is typing
+socket.on("typing", (incoming) => {
+  socket.broadcast.emit("typing", incoming)
+});
+
 
 })
 
