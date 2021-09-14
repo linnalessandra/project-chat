@@ -11,10 +11,6 @@ const {
     removeUser,
 } = require("./modules/users");
 
-/* const {
-    searchGif
-} = require("./modules/giphy"); */
-
 
 
 app.use(express.static('public'))
@@ -28,7 +24,7 @@ io.on('connection', (socket) => {
     socket.on("joined", (incoming) => {
         const user = addUser(incoming.name, socket.id)
         socket.join(incoming.room)
-        io.emit("joined", user)
+        socket.broadcast.emit("joined", user)
     })
 
     // for sending message
@@ -53,19 +49,13 @@ io.on('connection', (socket) => {
     socket.on("disconnect", () => {
         console.log("user disconnected")
         let user = removeUser(socket.id);
-        io.emit("userLeft", user);
+        socket.broadcast.emit("userLeft", user);
     })
 
-    
-
-
-
-//Listens from server if someone is typing
-socket.on("typing", (incoming) => {
-  socket.broadcast.emit("typing", incoming)
-});
-
-
+    // for seeing if someone is typing
+    socket.on("typing", (incoming) => {
+        socket.broadcast.emit("typing", incoming)
+    });
 })
 
 

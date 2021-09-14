@@ -29,6 +29,7 @@ header {
     position: fixed;
     bottom: 0;
     width: 100%;
+    margin: 0;
 }
 
 .inputContainer input {
@@ -38,6 +39,7 @@ header {
     margin-right: 0,5%;
     height: 50px;
     font-size: 17px;
+    position: sticky;
 }
 .inputContainer button {
     font-size: 18px;
@@ -47,22 +49,30 @@ header {
     padding: 10px;
     height: 50px;
     color: rgb(115, 109, 95);
-
 }
 
 #messages {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    margin-bottom: 120px;    
 }
 
 #messages li {
     padding: 7px 15px;
     color: rgb(115, 109, 95);
+    font-size: 18px;
 }
 
 #messages li:nth-child(odd) {
     background: #f0e1f9d3;
+}
 
+
+footer {
+    margin: 0;
+    bottom: 0;
+    position: relative;
+    width: 100%;
 }
 
