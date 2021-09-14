@@ -25,11 +25,18 @@
 
     <ul id="messages"></ul>
     <div class="inputContainer">
-    <div id="typing"></div>
-    
-        <input oninput="someoneIsTyping()" id="message" autocomplete="off" type="text" placeholder="Type your message..." />
-        <button onclick="sendMessage()">Send</button>
+        <div id="typing"></div>
+        <input list="gifOptions" oninput="datalistOptions(); someoneIsTyping();" id="message" autocomplete="off"
+            type="text" placeholder="Type your message or do ' / ' to find some gif-reactions!" />
+        <datalist>
+            <option value="/angry">
+            <option value="/sad">
+            <option value="/happy">
+            <option value="/confused">
+        </datalist>
+        <button id="button" onclick="sendMessage(); scrolling();">Send</button>
     </div>
+    <footer id="footer"></footer>
 
 </body>
 
