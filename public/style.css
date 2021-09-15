@@ -10,7 +10,7 @@ body {
 }
 
 header {
-    background-color: rgba(224, 221, 221, 0.473);
+    background-color: #f0e1f9d3;
     height: auto;
     font-size: 30px;
     display: flex;
@@ -18,8 +18,8 @@ header {
     align-items: center;
     font-family: 'Comfortaa', cursive;
     padding: 20px;
-    color: rgba(163, 159, 159, 0.896);
-    border: solid 2px rgba(103, 103, 103, 0.39);
+    color: rgba(88, 88, 88, 0.705);
+    border: solid 2px rgba(156, 152, 152, 0.247);
 }
 
 
@@ -41,6 +41,7 @@ header {
     font-size: 17px;
     position: sticky;
 }
+
 .inputContainer button {
     font-size: 18px;
     width: 9%;
@@ -51,23 +52,42 @@ header {
     color: rgb(115, 109, 95);
 }
 
+ul {
+    margin-top: 8px;
+}
+
 #messages {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    margin-bottom: 120px;    
+    margin-bottom: 120px; 
 }
 
 #messages li {
-    padding: 7px 15px;
     color: rgb(115, 109, 95);
-    font-size: 18px;
+    font-size: 19px;
+    margin-left: 15px;
+    margin-top: 7px;
+    margin-bottom: 5px;
 }
 
-#messages li:nth-child(odd) {
-    background: #f0e1f9d3;
+#messages p {
+    font-size: 10px;
+    font-family: sans-serif;
+    color: rgba(112, 112, 112, 0.712);
+    margin-left: 15px; 
+    margin-bottom: 3px;
+    padding: 0;
 }
 
+#messages div:nth-child(even) {
+    background: #f0e1f97c;
+    border: solid rgba(211, 211, 211, 0.759) 1px;
+}
+
+#messages div {
+    padding: 2px;
+}
 
 footer {
     margin: 0;

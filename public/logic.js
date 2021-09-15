@@ -37,9 +37,16 @@ window.onload = () => {
 // message output
 socket.on('message', (incoming) => {
     const list = document.getElementById("messages")
+    let messageContainer = document.createElement("div")
     let listItem = document.createElement("li")
+    let dNow = new Date();
+    let localdate = (dNow.getDate() + '/' + dNow.getMonth() + ' ' + dNow.getHours() + ':' + dNow.getMinutes());
+    const timeStamp = document.createElement("p")
+    timeStamp.innerText = localdate;
     listItem.innerText = incoming.name + ": " + incoming.message
-    list.appendChild(listItem)
+    messageContainer.appendChild(listItem)
+    messageContainer.appendChild(timeStamp)
+    list.appendChild(messageContainer)
     scrolling() // scrolling
 })
 
@@ -47,14 +54,21 @@ socket.on('message', (incoming) => {
 socket.on('gif', (incoming) => {
     const list = document.getElementById("messages")
     const fig = document.createElement("figure")
+    let gifContainer = document.createElement("div")
     fig.style.padding = "6px 13px"
     const user = document.createElement("li")
     user.innerText = incoming.name + ": "
     let listItem = document.createElement("img")
+    let dNow = new Date();
+    let localdate = (dNow.getDate() + '/' + dNow.getMonth() + ' ' + dNow.getHours() + ':' + dNow.getMinutes());
+    const timeStamp = document.createElement("p")
+    timeStamp.innerText = localdate;
     listItem.src = incoming.gif
     fig.appendChild(listItem)
-    list.appendChild(user)
-    list.appendChild(fig)
+    gifContainer.appendChild(user)
+    gifContainer.appendChild(fig)
+    gifContainer.appendChild(timeStamp)
+    list.appendChild(gifContainer)
     scrolling(); // scrolling
 })
 
