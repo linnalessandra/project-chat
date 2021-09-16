@@ -18,14 +18,30 @@ header {
     align-items: center;
     font-family: 'Comfortaa', cursive;
     padding: 20px;
-    color: rgba(88, 88, 88, 0.705);
+    color: rgba(88, 88, 88, 0.466);
     border: solid 2px rgba(156, 152, 152, 0.247);
+}
+
+.glow {
+    -webkit-animation: glow 2s ease-in-out infinite alternate;
+  -moz-animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px rgb(243, 211, 164), 0 0 20px rgb(241, 220, 162), 0 0 30px #ebd489, 0 0 40px #ebd9a3, 0 0 50px #f0e2a4bd, 0 0 60px #f0e4bec0;
+  }
+  
+  to {
+    text-shadow: 0 0 20px rgb(229, 247, 146), 0 0 30px #eeedac, 0 0 40px #d7e0b2, 0 0 50px #e3e6bd, 0 0 60px #dbdfb7ce;
+  }
 }
 
 
 .inputContainer {
     background-color: rgba(224, 221, 221, 0.473);
-    padding: 3px;
+    padding: 7px;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -39,7 +55,7 @@ header {
     margin-right: 0,5%;
     height: 50px;
     font-size: 17px;
-    position: sticky;
+    color: rgb(81, 79, 75);
 }
 
 .inputContainer button {
@@ -82,14 +98,16 @@ ul {
 
 #messages div:nth-child(even) {
     background: #f0e1f97c;
-    border: solid rgba(211, 211, 211, 0.759) 1px;
 }
 
 #messages div {
     padding: 2px;
+    border: solid rgba(211, 211, 211, 0.759) 1px;
+    margin: 1%;
+
 }
 
-footer {
+#footer {
     margin: 0;
     bottom: 0;
     position: relative;
