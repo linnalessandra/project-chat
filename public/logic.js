@@ -13,24 +13,21 @@ window.onload = () => {
     const list = document.getElementById("messages")
     let listItem = document.createElement("li")
     list.appendChild(listItem)
+    listItem.style.margin = "1%"
+    listItem.style.display = "flex"
+    listItem.style.justifyContent = "center"
+    listItem.style.color = "rgb(148 142 112 / 62%)"
+
 
     const time = new Date().getHours();
 
-    if (time < 17) {
-        listItem.innerText = "Good day " + name + "!"
-
-    } else if (time < 23) {
-        listItem.innerText = "Good evening " + name + "!"
-
-    } else if (time > 23) {
-        listItem.innerText = "You should get some sleep " + name + "!"
-
-    } else if (time > 5) {
-        listItem.innerText = "Good morning " + name + "!";
-
+    if (time < 10) {
+        listItem.innerText = "Good morning and welcome " + name + "!";
+    } else if (time < 19) {
+        listItem.innerText = "Good day and welcome " + name + "!"
     } else {
-        listItem.innerText = "Good day " + name + "!";
-    };
+        listItem.innerText = "Good evening and welcome " + name + "!"
+    }
 
 }
 
@@ -38,6 +35,7 @@ window.onload = () => {
 socket.on('message', (incoming) => {
     const list = document.getElementById("messages")
     let messageContainer = document.createElement("div")
+    messageContainer.classList.add("messageContainer")
     let listItem = document.createElement("li")
     let dNow = new Date();
     let localdate = (dNow.getDate() + '/' + dNow.getMonth() + ' ' + dNow.getHours() + ':' + dNow.getMinutes());
@@ -55,6 +53,7 @@ socket.on('gif', (incoming) => {
     const list = document.getElementById("messages")
     const fig = document.createElement("figure")
     let gifContainer = document.createElement("div")
+    gifContainer.classList.add("messageContainer")
     fig.style.padding = "6px 13px"
     const user = document.createElement("li")
     user.innerText = incoming.name + ": "
@@ -69,6 +68,7 @@ socket.on('gif', (incoming) => {
     gifContainer.appendChild(fig)
     gifContainer.appendChild(timeStamp)
     list.appendChild(gifContainer)
+
     scrolling(); // scrolling
 })
 
@@ -83,6 +83,7 @@ async function sendMessage() {
         const gif = await searchGif(message);
         socket.emit('gif', { name, gif })
         input.value = ""
+        scrolling(); // scrolling
         return
     }
 
@@ -96,7 +97,7 @@ sendingMessage.addEventListener("keyup", function (event) {
     if (event.which === 13) {
         event.preventDefault();
         document.getElementById("button").click();
-        scrolling(); // scrolling
+        scrolling(); // scrolling to end of page function
     } if (sendingMessage === "") {
         return
     }
@@ -106,17 +107,38 @@ sendingMessage.addEventListener("keyup", function (event) {
 socket.on("joined", (user) => {
     console.log("someone joined the room")
     const list = document.getElementById("messages")
+    const joinContainer = document.createElement("div")
     let listItem = document.createElement("li")
+    let dNow = new Date();
+    let localdate = (dNow.getDate() + '/' + dNow.getMonth() + ' ' + dNow.getHours() + ':' + dNow.getMinutes());
+    const timeStamp = document.createElement("p")
     listItem.innerText = user.username + " joined the room!"
-    list.appendChild(listItem)
+    listItem.style.color = "#759c75"
+    listItem.style.fontSize = "15px"
+    timeStamp.innerText = localdate;
+    joinContainer.appendChild(listItem)
+    joinContainer.appendChild(timeStamp)
+    list.appendChild(joinContainer)
+
 })
 
 // disconnected user
 socket.on('userLeft', (user) => {
     const list = document.getElementById("messages")
     let listItem = document.createElement("li")
+    const disconnectContainer = document.createElement("div")
+    let dNow = new Date();
+    let localdate = (dNow.getDate() + '/' + dNow.getMonth() + ' ' + dNow.getHours() + ':' + dNow.getMinutes());
+    const timeStamp = document.createElement("p")
     listItem.innerText = user.username + " left the room..."
-    list.appendChild(listItem)
+    listItem.style.color = "#e96f6f"
+    listItem.style.fontSize = "15px"
+
+
+    timeStamp.innerText = localdate;
+    disconnectContainer.appendChild(listItem)
+    disconnectContainer.appendChild(timeStamp)
+    list.appendChild(disconnectContainer)
     console.log("disconnect right")
 })
 
@@ -128,7 +150,7 @@ function timeoutTypingFunction() {
     socket.emit("typing", { typing: typing, userName: name });
 }
 
-function someoneIsTyping() {
+function typingFunction() {
     if (typing === false) {
         typing = true;
         //Send to server that someone is typing
@@ -143,6 +165,8 @@ function someoneIsTyping() {
 // Listens from server if someone is typing
 socket.on("typing", (typing) => {
     const typingBox = document.getElementById("typing");
+    typingBox.style.padding = "2px"
+    typingBox.style.color = "rgb(81, 79, 75)"
     if (typing.typing) {
         const userTyping = document.createElement("li");
         userTyping.style.listStyle = "none";
@@ -167,7 +191,7 @@ function datalistOptions() {
 // to see latest messages
 function scrolling() {
     var scrollDown = document.getElementById("footer");
-    scrollDown.scrollIntoView(false);
+    scrollDown.scrollIntoView({ behavior: "smooth", block: "end", inline: "end" });
 }
 
 scrolling()
