@@ -144,38 +144,38 @@ socket.on('userLeft', (user) => {
 
 let typing = false;
 
-// check to see if someone is typing
+// Checks if someone is typing
 function timeoutTypingFunction() {
     typing = false;
-    socket.emit("typing", { typing: typing, userName: name });
+    socket.emit("typing", { typing: typing, userName: name })
 }
 
 function typingFunction() {
     if (typing === false) {
         typing = true;
-        //Send to server that someone is typing
-        socket.emit("typing", { typing: typing, userName: name });
-        timeout = setTimeout(timeoutTypingFunction, 3000);
+        //Sends to server
+        socket.emit("typing", { typing: typing, userName: name })
+        timeout = setTimeout(timeoutTypingFunction, 3000)
     } else {
         clearTimeout(timeout);
-        timeout = setTimeout(timeoutTypingFunction, 3000);
+        timeout = setTimeout(timeoutTypingFunction, 3000)
     }
 }
 
-// Listens from server if someone is typing
+// Listens from server 
 socket.on("typing", (typing) => {
-    const typingBox = document.getElementById("typing");
+    const typingBox = document.getElementById("typing")
     typingBox.style.padding = "2px"
     typingBox.style.color = "rgb(81, 79, 75)"
     if (typing.typing) {
-        const userTyping = document.createElement("li");
+        const userTyping = document.createElement("li")
         userTyping.style.listStyle = "none";
-        userTyping.innerText = `${typing.userName} is typing...`;
-        typingBox.append(userTyping);
+        userTyping.innerText = `${typing.userName} is typng...`
+        typingBox.append(userTyping)
     } else {
-        typingBox.innerHTML = "";
+        typingBox.innerHTML = ""
     }
-});
+})
 
 // too se the options in the datalist
 function datalistOptions() {
@@ -190,6 +190,7 @@ function datalistOptions() {
 
 // to see latest messages
 function scrolling() {
+    messages.scrollTop = messages.scrollHeight;
     var scrollDown = document.getElementById("footer");
     scrollDown.scrollIntoView({ behavior: "smooth", block: "end", inline: "end" });
 }
