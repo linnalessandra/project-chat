@@ -12,7 +12,7 @@ body {
 header {
     background-color: #f0e1f9d3;
     height: auto;
-    font-size: 30px;
+    font-size: 22px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,7 +84,7 @@ ul {
     font-size: 19px;
     margin-left: 15px;
     margin-top: 7px;
-    margin-bottom: 5px;
+    margin-bottom: 50px;
 }
 
 #messages p {
@@ -113,4 +113,6 @@ ul {
     position: relative;
     width: 100%;
 }
+
+
 
