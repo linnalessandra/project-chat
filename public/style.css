@@ -28,7 +28,7 @@ header {
   animation: glow 2s ease-in-out infinite alternate;
 }
 
-@-webkit-keyframes glow {
+@keyframes glow {
   from {
     text-shadow: 0 0 10px rgb(243, 211, 164), 0 0 20px rgb(241, 220, 162), 0 0 30px #ebd489, 0 0 40px #ebd9a3, 0 0 50px #f0e2a4bd, 0 0 60px #f0e4bec0;
   }
